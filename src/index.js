@@ -1,5 +1,7 @@
+// This file handles the reducer, INCREMENT and RESET.
+
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'; 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -25,7 +27,7 @@ function reducer(state = initialState, action){
   }
 }
 
-const store = createStore(reducer);
+const store = createStore(reducer); // Creates the store in Redux using Redux's createStore, updated by function "reducer" in this file. 
 
 
 ReactDOM.render(
@@ -38,7 +40,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+// This is for future improvement to do with User Management.
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// reportWebVitals();

@@ -1,3 +1,5 @@
+// This will generate the answers to display relative to the question and hand the submit of selected answer to be compared to correct answer.
+
 import React, { Component } from "react";
 
 export default class Answers extends Component {
@@ -9,7 +11,7 @@ export default class Answers extends Component {
 
     }
   }
-  generateAnswers = () => {
+  generateAnswers = () => { // this generates the answers to display based on random question/answers from json data.
     let answers = [];
     if (this.props.answers !== null) {
       for (const [key, value] of Object.entries(this.props.answers)) {
@@ -39,7 +41,7 @@ this.setState(
 )
 }
 
-handleSubmit = (e) => {
+handleSubmit = (e) => { // this records the selected answer to check against the correct answer in json data.
   e.preventDefault() // prevents application from reloading.
   this.props.checkAnswer(this.state.selectedAnswer)
   this.setState(

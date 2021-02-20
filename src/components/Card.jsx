@@ -3,8 +3,8 @@
 import React, { Component } from "react";
 import Question from "./Question.jsx";
 import Answers from "./Answers";
-import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+import { connect } from "react-redux"; // connect() function connects a React component to a Redux store.
+import { Link } from 'react-router-dom'; // Link provides declarative, accessible navigation around your application.
 
 class Card extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class Card extends Component {
     }
   }
 
-  nextQuestion = () => {
+  nextQuestion = () => { // This is counting the questions to determine if round is still active or completed.
     if(this.state.currentQuestionIndex < this.state.data.length - 1){
             this.setState({
         currentQuestionIndex: this.state.currentQuestionIndex + 1
@@ -31,8 +31,8 @@ class Card extends Component {
   }
 // API key management=====================================================
   getData = () => {
-    const key = "ufyYzoFd70dkgrVfurdw8RhjWow9lm9uxYixPnh3";
-    const url = `https://quizapi.io/api/v1/questions?apiKey=${key}&limit=10&tags=${this.props.quizType}`;
+    const key = "ufyYzoFd70dkgrVfurdw8RhjWow9lm9uxYixPnh3"; // Key is seperate incase new key is needed.  Easier to change here.
+    const url = `https://quizapi.io/api/v1/questions?apiKey=${key}&limit=10&tags=${this.props.quizType}`; //quizType is passed down from QuizContainer.jsx
 
     fetch(url) // API call.
       .then((res) => res.json()) // The promise starts here.
@@ -55,18 +55,18 @@ class Card extends Component {
       );
   };
 
-  checkAnswer = (selectedAnswer) => {
+  checkAnswer = (selectedAnswer) => { // this is where the json correct answer is identified to be compared to selected answer.
     const { data, currentQuestionIndex } = this.state;
     let correctAnswer = '';
-    // This maps over each entry in the current question's correct answers object and changes the correctAnswer variable to the key of the entry that has a value of true 
+    // This maps over each entry in the current question's correct answers object, and changes the correctAnswer variable to the key of the entry that has a value of true from json
     for (const [key, value] of Object.entries(data[currentQuestionIndex].correct_answers)) {
-      if (value === 'true') {
+      if (value === 'true') { // this portion was the solution to a complicated json file layout.
         correctAnswer = key.slice(0, 8);
         console.log(key.slice(0, 8))
         break;
       }
     }
-    if (selectedAnswer === correctAnswer) {
+    if (selectedAnswer === correctAnswer) { // this where the correct answer from json and selected answer from user is compared.
       // if the user selects the correct score, we call reducer to increment the score in redux
       this.props.dispatch({type: "INCREMENT"})
     }

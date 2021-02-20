@@ -1,3 +1,5 @@
+// Is currently not being used.  Future improvement once User Login is created and working.
+
 const reportWebVitals = onPerfEntry => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {

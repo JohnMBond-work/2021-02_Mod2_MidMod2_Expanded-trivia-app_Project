@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 class Score extends Component {
 
-  render() {
+  render() { // This prints out the current score on page, pulled from Redux state.score
     return (
             <div>
 
