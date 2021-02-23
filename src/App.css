@@ -1,26 +1,5 @@
 .App {
   text-align: center;
-
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -30,4 +9,105 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  height: 40px;
+  background-color: #4b5320;
+  color: #f9f9f9;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-items {
+  margin: 0 30px;
+  padding: 3px 0;
+}
+
+/* This prevents default browser styling for links - Blue or purple with underline */
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* HOMESCREEN */
+.link-container {
+  margin: 50px auto;
+  width: 75%;
+  max-width: 350px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 15px 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.link-container:hover {
+  color: #f9f9f9;
+  background-color: #4b5320;
+}
+
+#homescreen-title {
+  margin: 100px auto 20px auto;
+  font-weight: 600;
+  font-size: 1.75em;
+}
+
+#homescreen-subtitle {
+  margin: 0 auto 100px auto;
+}
+
+/*  ANSWERS  */
+#answers-container {
+  width: 90%;
+  margin: 0 auto 10px auto;
+}
+
+.answer {
+  width: 95%;
+  margin: 2px auto;
+  text-align: left;
+}
+
+/* Used throughout app as floating container */
+.card {
+  padding: 10px;
+  border-radius: 5px;
+  width: 50%;
+  max-width: 600px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+/* Used throughout app to add box shadow to elements */
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+/* Found animation at https://paulund.co.uk/css-animation-link-underline - This is used on the navbar to animate an underline below the links */
+.middle {
+  position: relative;
+}
+
+.middle:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.middle:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
 }

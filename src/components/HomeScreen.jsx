@@ -3,46 +3,31 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Link provides declarative, accessible navigation around your application.
 
-
-export default function HomeScreen() { //This renders the page text and link options.  Link tag passes extension onto API URL in Card.js
+export default function HomeScreen() {
+  //This renders the page text and link options.  Link tag passes extension onto API URL in Card.js
   return (
-    <div><br></br><br></br><br></br><br></br><br></br><br></br>Welcome to SE Quiz
-      <Link to="/quiz/html">
-        <div
-          style={{
-            margin: "50px auto",
-            width: "25%",
-            border: "1px solid black",
-            borderRadius: "5px",
-          }}
-        >
-          Link to HTML Quiz {"->"}
+    <div>
+      {/*  Updated structure of code and styling */}
+      <h1 id="homescreen-title">Coding Trivia App</h1>
+      <p id="homescreen-subtitle">Select a Quiz below to get started!</p>
+
+      <div className="card shadow">
+        <div className="link-container">
+          <Link to="/quiz/html" className="link">
+            HTML
+          </Link>
         </div>
-      </Link>
-      <Link to="/quiz/javascript">
-        <div
-          style={{
-            margin: "50px auto",
-            width: "25%",
-            border: "1px solid black",
-            borderRadius: "5px",
-          }}
-        >
-          Link to JavaScript Quiz {"->"}
+        <div className="link-container">
+          <Link to="/quiz/javascript" className="link">
+            JavaScript
+          </Link>
         </div>
-      </Link>
-      <Link to="/quiz/BASH">
-        <div
-          style={{
-            margin: "50px auto",
-            width: "25%",
-            border: "1px solid black",
-            borderRadius: "5px",
-          }}
-        >
-          Link to BASH Quiz {"->"}
+        <div className="link-container">
+          <Link to="/quiz/BASH" className="link">
+            BASH
+          </Link>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }

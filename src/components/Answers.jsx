@@ -7,17 +7,17 @@ export default class Answers extends Component {
     super(props);
 
     this.state = {
-        selectedAnswer: ""
-
-    }
+      selectedAnswer: "",
+    };
   }
-  generateAnswers = () => { // this generates the answers to display based on random question/answers from json data.
+  generateAnswers = () => {
+    // this generates the answers to display based on random question/answers from json data.
     let answers = [];
     if (this.props.answers !== null) {
       for (const [key, value] of Object.entries(this.props.answers)) {
         if (value !== null) {
           answers.push(
-            <div>
+            <div className="answer">
               <input
                 type="radio"
                 name="answers"
@@ -25,6 +25,7 @@ export default class Answers extends Component {
                 value={value}
                 checked={this.state.selectedAnswer === key}
                 onChange={this.handleChange}
+                required
               />
               <label htmlFor={key}>{value}</label>
             </div>
@@ -35,43 +36,31 @@ export default class Answers extends Component {
     return answers;
   };
 
-handleChange = (e) => {
-this.setState(
-  {selectedAnswer: e.target.id}
-)
-}
-
-handleSubmit = (e) => { // this records the selected answer to check against the correct answer in json data.
-  e.preventDefault() // prevents application from reloading.
-  this.props.checkAnswer(this.state.selectedAnswer)
-  this.setState(
-    {selectedAnswer: ""}
-  )
-  }
-
-  render() {
-      return (
-    <div
-      style={{
-        margin: "20px auto",
-        width: "90%",
-        boxShadow: "0 10px 6px -6px #777",
-        border: "1px solid black",
-        borderRadius: "5px",
-      }}
-    >
-      {/* this form is for the purpose of submitting the user answer choices to the card for validation. */}
-      <form onSubmit={this.handleSubmit}>
-        {this.generateAnswers().map((answer, index) => {
-        return <div key={index}>{answer}</div>;
-        })}
-        <br></br>
-        <button type="submit" style={{margin: '5px 0'}}>Submit</button>
-      </form>
-
-
-    </div>
-  );
+  handleChange = (e) => {
+    this.setState({ selectedAnswer: e.target.id });
   };
 
+  handleSubmit = (e) => {
+    // this records the selected answer to check against the correct answer in json data.
+    e.preventDefault(); // prevents application from reloading.
+    this.props.checkAnswer(this.state.selectedAnswer);
+    this.setState({ selectedAnswer: "" });
+  };
+
+  render() {
+    return (
+      <div id="answers-container">
+        {/* this form is for the purpose of submitting the user answer choices to the card for validation. */}
+        <form onSubmit={this.handleSubmit}>
+          {this.generateAnswers().map((answer, index) => {
+            return <div key={index}>{answer}</div>;
+          })}
+          <br></br>
+          <button type="submit" style={{ margin: "5px 0" }}>
+            Submit
+          </button>
+        </form>
+      </div>
+    );
+  }
 }
