@@ -1,43 +1,77 @@
 // This file handles the reducer, INCREMENT and RESET.
 
-import React from 'react';
-import ReactDOM from 'react-dom'; 
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
 const initialState = {
-  score: 0
+  score: 0,
+  users: [],
+  authenticated: false,
+  currentUser: null,
 };
 
-function reducer(state = initialState, action){
-  switch(action.type) {
-    case"INCREMENT":
-    return{
-      score: state.score + 10 // this number is only applicable towards quizes with 10 questions.  Future redesign would need to be done to accomodate different number of questions to the score.
-    };
-    case"RESET":
-    return{
-      score: 0
-    };
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case "LOGIN":
+      return {
+        ...state,
+        currentUser: state.users.find(
+          (user) =>
+            user.userName === action.user.userName &&
+            user.password === action.user.password
+        ),
+        authenticated:
+          state.users.find(
+            (user) =>
+              user.userName === action.user.userName &&
+              user.password === action.user.password
+          ) === undefined
+            ? false
+            : true,
+      };
+    case "CREATE_USER":
+      return {
+        ...state,
+        users: [...state.users, action.user],
+        authenticated: true,
+        currentUser: action.user,
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        authenticated: false,
+        currentUser: null,
+      };
+    case "INCREMENT":
+      return {
+        ...state,
+        score: state.score + 10, // this number is only applicable towards quizes with 10 questions.  Future redesign would need to be done to accomodate different number of questions to the score.
+      };
+    case "RESET":
+      return {
+        ...state,
+        score: 0,
+      };
     default:
-    return state;
+      return state;
   }
 }
 
-const store = createStore(reducer); // Creates the store in Redux using Redux's createStore, updated by function "reducer" in this file. 
-
+const store = createStore(reducer); // Creates the store in Redux using Redux's createStore, updated by function "reducer" in this file.
 
 ReactDOM.render(
   <React.StrictMode>
     {/* this creates the Redux within JSX to allow for storing state outside of containers via the Provider tag. */}
     <Provider store={store}>
-    <App />
+      <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // This is for future improvement to do with User Management.

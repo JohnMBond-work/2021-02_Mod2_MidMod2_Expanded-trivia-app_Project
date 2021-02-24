@@ -1,15 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function NavBar() {
+function NavBar(props) {
   return (
     <div className="navbar shadow">
       <Link to="/" className="link navbar-items middle">
         Home
       </Link>
-      <Link to="/login" className="link navbar-items middle">
-        Login or Create an Account
-      </Link>
+      {props.authenticated ? (
+        <div className="navbar-items">
+          Hello {props.currentUser.firstName}!
+          <Link to="/login" className="link navbar-items middle">
+            Log Out
+          </Link>
+        </div>
+      ) : (
+        <Link to="/login" className="link navbar-items middle">
+          Login or Create an Account
+        </Link>
+      )}
     </div>
   );
 }
+function mapStateToProps(state) {
+  // Function that takes the Redux State and maps to this component's props.
+  return { authenticated: state.authenticated, currentUser: state.currentUser };
+}
+export default connect(mapStateToProps)(NavBar);
