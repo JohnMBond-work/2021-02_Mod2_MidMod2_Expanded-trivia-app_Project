@@ -4,6 +4,7 @@ import "./App.css";
 import QuizContainer from "./components/QuizContainer";
 import HomeScreen from "./components/HomeScreen";
 import NavBar from "./components/NavBar";
+import AccountScreen from "./components/AccountScreen";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
 
             <Route path="/quiz/BASH">
               <QuizContainer quizType="BASH" />
+            </Route>
+
+            <Route path="/login">
+              <AccountScreen />
             </Route>
           </Switch>
         </div>

@@ -8,7 +8,7 @@ export default function NavBar() {
         Home
       </Link>
       <Link to="/login" className="link navbar-items middle">
-        Login or Create User
+        Login or Create an Account
       </Link>
     </div>
   );

@@ -8,8 +8,8 @@ export default function HomeScreen() {
   return (
     <div>
       {/*  Updated structure of code and styling */}
-      <h1 id="homescreen-title">Coding Trivia App</h1>
-      <p id="homescreen-subtitle">Select a Quiz below to get started!</p>
+      <h1 className="title">Coding Trivia App</h1>
+      <p className="subtitle">Select a Quiz below to get started!</p>
 
       <div className="card shadow">
         <div className="link-container">

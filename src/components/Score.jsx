@@ -7,7 +7,7 @@ class Score extends Component {
   render() {
     // This prints out the current score on page, pulled from Redux state.score
     return (
-      <div style={{ margin: "10px auto" }}>
+      <div className="subtitle">
         Current Score: {this.props.score} points out of 100
       </div>
     );

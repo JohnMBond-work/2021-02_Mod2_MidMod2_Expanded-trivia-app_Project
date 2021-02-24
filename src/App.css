@@ -51,14 +51,14 @@
   background-color: #4b5320;
 }
 
-#homescreen-title {
+.title {
   margin: 100px auto 20px auto;
   font-weight: 600;
   font-size: 1.75em;
 }
 
-#homescreen-subtitle {
-  margin: 0 auto 100px auto;
+.subtitle {
+  margin: 0 auto 80px auto;
 }
 
 /*  ANSWERS  */
@@ -71,6 +71,30 @@
   width: 95%;
   margin: 2px auto;
   text-align: left;
+}
+
+/* LOGIN PAGE */
+.login-form input {
+  height: 30px;
+  width: 60%;
+  border: none;
+  border-bottom: 2px solid #4b5320;
+  margin: 5px 0;
+  padding-left: 5px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  border-bottom: 2px solid #4b5320;
+  background-color: white !important;
 }
 
 /* Used throughout app as floating container */

@@ -107,6 +107,7 @@ class Card extends Component {
             <p>
               Question {currentQuestionIndex + 1} of {data.length}
             </p>
+            {/* progress bar */}
             <div
               style={{
                 height: "3px",
