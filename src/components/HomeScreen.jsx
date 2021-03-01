@@ -27,6 +27,41 @@ export default function HomeScreen() {
             BASH
           </Link>
         </div>
+        <div className="link-container">
+          <Link to="/quiz/Linux" className="link">
+            Linux
+          </Link>
+        </div>
+        <div className="link-container">
+          <Link to="/quiz/PHP" className="link">
+            PHP
+          </Link>
+        </div>
+        <div className="link-container">
+          <Link to="/quiz/DevOps" className="link">
+            DevOps
+          </Link>
+        </div>
+        <div className="link-container">
+          <Link to="/quiz/Docker" className="link">
+            Docker
+          </Link>
+        </div>
+        <div className="link-container">
+          <Link to="/quiz/WordPress" className="link">
+            WordPress
+          </Link>
+        </div>
+        <div className="link-container">
+          <Link to="/quiz/Kubernetes" className="link">
+            Kubernetes
+          </Link>
+        </div>
+        <div className="link-container">
+          <Link to="/quiz/Laravel" className="link">
+            Laravel
+          </Link>
+        </div>
       </div>
     </div>
   );

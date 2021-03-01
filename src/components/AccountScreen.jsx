@@ -18,7 +18,9 @@ class AccountScreen extends Component {
   }
 
   handleSubmit = (e) => {
+    // prevents page from reloading when form is submitted - standard for forms in React
     e.preventDefault();
+
     // checks which form is being submitted, and calls the associated action type in redux
     switch (this.state.formType) {
       case "login":
@@ -42,6 +44,9 @@ class AccountScreen extends Component {
           },
         });
         break;
+      default:
+        // If formType doesn't match either of these cases for some reason, then we just log an error to the console
+        console.log(`Unknown form type of "${this.state.formType}"`);
     }
   };
 
@@ -74,6 +79,7 @@ class AccountScreen extends Component {
                 placeholder="User Name"
                 autoComplete="false"
                 onChange={this.handleChange}
+                required
               />
               <input
                 type="password"
@@ -82,10 +88,24 @@ class AccountScreen extends Component {
                 autoComplete="false"
                 placeholder="Password"
                 onChange={this.handleChange}
+                required
               />
               <div style={{ margin: "10px 0 0 0" }}>
                 <button type="submit">Login</button>
               </div>
+              {/* if credentials are incorrect, currentUser will be undefined. Display error text if currentUser is undefined */}
+              {this.props.currentUser === undefined && (
+                <p
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    color: "#900000",
+                  }}
+                >
+                  User name or password is incorrect. Please try again. Note:
+                  credentials are case-sensitive.
+                </p>
+              )}
               <p
                 style={{
                   fontSize: "14px",
@@ -117,6 +137,7 @@ class AccountScreen extends Component {
                 value={firstName}
                 placeholder="First Name"
                 onChange={this.handleChange}
+                required
               />
               <input
                 type="text"
@@ -124,6 +145,7 @@ class AccountScreen extends Component {
                 value={lastName}
                 placeholder="Last Name"
                 onChange={this.handleChange}
+                required
               />
               <input
                 type="text"
@@ -131,6 +153,7 @@ class AccountScreen extends Component {
                 value={userName}
                 placeholder="User Name"
                 onChange={this.handleChange}
+                required
               />
               <input
                 type="password"
@@ -138,6 +161,7 @@ class AccountScreen extends Component {
                 value={password}
                 placeholder="Password"
                 onChange={this.handleChange}
+                required
               />
               <div style={{ margin: "10px 0 0 0" }}>
                 <button type="submit">Create Account</button>
@@ -157,6 +181,8 @@ class AccountScreen extends Component {
               </p>
             </form>
           );
+        default:
+          return null;
       }
     };
 
@@ -164,12 +190,17 @@ class AccountScreen extends Component {
       <div style={{ margin: "100px" }}>
         <h1 className="title">Login or Create an Account</h1>
         <div className="card shadow" style={{ margin: "80px auto 0 auto" }}>
+          {/* Checking to see if they're authenticated. If they are, display the logout screen, if not, render the login/create user forms */}
           {this.props.authenticated ? (
             <div>
               <p>
-                Current Logged in as {this.props.currentUser.firstName}{" "}
+                Currently Logged in as {this.props.currentUser.firstName}{" "}
                 {this.props.currentUser.lastName}
               </p>
+              <p>
+                Quizes Completed: {this.props.currentUser.totalQuizCompleted}
+              </p>
+              <p>Total Points Earned: {this.props.currentUser.totalPoints}</p>
               <button
                 onClick={() => {
                   this.setState({ formType: "login" });

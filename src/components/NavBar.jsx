@@ -11,12 +11,12 @@ function NavBar(props) {
       {props.authenticated ? (
         <div className="navbar-items">
           Hello {props.currentUser.firstName}!
-          <Link to="/login" className="link navbar-items middle">
-            Log Out
+          <Link to="/account" className="link navbar-items middle">
+            View Account
           </Link>
         </div>
       ) : (
-        <Link to="/login" className="link navbar-items middle">
+        <Link to="/account" className="link navbar-items middle">
           Login or Create an Account
         </Link>
       )}

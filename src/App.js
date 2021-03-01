@@ -32,7 +32,35 @@ function App() {
               <QuizContainer quizType="BASH" />
             </Route>
 
-            <Route path="/login">
+            <Route path="/quiz/Linux">
+              <QuizContainer quizType="Linux" />
+            </Route>
+
+            <Route path="/quiz/PHP">
+              <QuizContainer quizType="PHP" />
+            </Route>
+
+            <Route path="/quiz/DevOps">
+              <QuizContainer quizType="DevOps" />
+            </Route>
+
+            <Route path="/quiz/Docker">
+              <QuizContainer quizType="Docker" />
+            </Route>
+
+            <Route path="/quiz/WordPress">
+              <QuizContainer quizType="WordPress" />
+            </Route>
+
+            <Route path="/quiz/Kubernetes">
+              <QuizContainer quizType="Kubernetes" />
+            </Route>
+
+            <Route path="/quiz/Laravel">
+              <QuizContainer quizType="Laravel" />
+            </Route>
+
+            <Route path="/account">
               <AccountScreen />
             </Route>
           </Switch>
