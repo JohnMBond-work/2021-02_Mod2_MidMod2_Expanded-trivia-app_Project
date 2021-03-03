@@ -128,7 +128,7 @@ class AccountScreen extends Component {
                     color: "#900000",
                   }}
                 >
-                  User name or password is incorrect. Please try again. Note:
+                  User name or password is incorrect. Please try again or Create New User Account below. Note:
                   credentials are case-sensitive.
                 </p>
               )}
@@ -157,7 +157,7 @@ class AccountScreen extends Component {
               <p style={{ fontSize: "20px", fontWeight: "semi-bold" }}>
                 Create an Account
               </p>
-              <input
+              {/* <input
                 type="text"
                 name="firstName"
                 value={firstName}
@@ -172,7 +172,7 @@ class AccountScreen extends Component {
                 placeholder="Last Name"
                 onChange={this.handleChange}
                 required
-              />
+              /> */}
               <input
                 type="text"
                 name="userName"
