@@ -77,12 +77,15 @@ Learned:
 
 
 Goals:
-    Still need to develop the user login.
-    Still need to dress it up more with CSS.
-    Still need to add more comments within the code files.
+    Still need to develop the user login.  (done)
+    Still need to dress it up more with CSS. (done)
+    Still need to add more comments within the code files. (inprocess)
     Still need to deploy to heroku.com
-    Expand to include more options for the quiz topics.
-    Expand to place quiz options into a nav bar and render quiz container to the right of the nav bar.
+    Expand to include more options for the quiz topics. (done)
+    Expand to place quiz options into a nav bar and render quiz container to the right of the nav bar. (done)
     Upgrade with Header, side-bar, Developer, etc...
+
+
+    
 
 

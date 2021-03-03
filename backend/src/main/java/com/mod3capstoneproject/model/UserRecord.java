@@ -16,7 +16,6 @@ public class UserRecord {
 	@Column(name = "uname")
 	private String name;
 	@Column(name = "pw")
-	
 	private String password;
 	@Column(name = "current_progress_score")
 	private int currentScore;

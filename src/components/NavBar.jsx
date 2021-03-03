@@ -10,7 +10,7 @@ function NavBar(props) {
       </Link>
       {props.authenticated ? (
         <div className="navbar-items">
-          Hello {props.currentUser.firstName}!
+          Hello {props.currentUser.userName}!
           <Link to="/account" className="link navbar-items middle">
             View Account
           </Link>

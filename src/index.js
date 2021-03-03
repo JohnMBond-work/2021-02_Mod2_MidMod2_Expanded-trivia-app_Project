@@ -10,7 +10,6 @@ import { Provider } from "react-redux";
 
 const initialState = {
   score: 0,
-  users: [],
   authenticated: false,
   currentUser: null,
 };
@@ -21,42 +20,8 @@ function reducer(state = initialState, action) {
       return {
         // Creating a copy of state by deconstructing it, so we can access the values and update them without actually changing state - immutable data
         ...state,
-        // setting the current user to the user in the list of users that matches the credentials entered - if this doesn't work, it becomes undefined
-        currentUser: state.users.find(
-          (user) =>
-            user.userName === action.user.userName &&
-            user.password === action.user.password
-        ),
-        // This checks to see if the user exists, and determines whether they're authenticated or not. array.find will return 'undefined' if the user doesn't exist in the list of users, so if it is undefined, authenticated should stay false
-        authenticated:
-          state.users.find(
-            (user) =>
-              user.userName === action.user.userName &&
-              user.password === action.user.password
-          ) === undefined
-            ? false
-            : true,
-      };
-    case "CREATE_USER":
-      return {
-        ...state,
-        users: [
-          ...state.users,
-          // Creates new user in the users array with the values of the create user form, and generates new score fields - this will change with the backend
-          {
-            ...action.user,
-            totalPoints: 0,
-            totalQuizCompleted: 0,
-            currentScore: 0,
-          },
-        ],
-        authenticated: true,
-        currentUser: {
-          ...action.user,
-          totalPoints: 0,
-          totalQuizCompleted: 0,
-          currentScore: 0,
-        },
+        currentUser: action.user,
+        authenticated: true
       };
     case "LOGOUT":
       return {

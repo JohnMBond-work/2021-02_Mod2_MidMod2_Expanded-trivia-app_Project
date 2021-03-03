@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from 'axios';
 
 class AccountScreen extends Component {
   constructor(props) {
@@ -11,11 +12,13 @@ class AccountScreen extends Component {
       password: "",
       firstName: "",
       lastName: "",
+      attemptedLogin: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
 
   handleSubmit = (e) => {
     // prevents page from reloading when form is submitted - standard for forms in React
@@ -24,25 +27,48 @@ class AccountScreen extends Component {
     // checks which form is being submitted, and calls the associated action type in redux
     switch (this.state.formType) {
       case "login":
-        this.props.dispatch({
-          type: "LOGIN",
-          user: {
-            userName: this.state.userName,
-            password: this.state.password,
-          },
-        });
+        fetch('http://localhost:8080/users')
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            // Had to pull in all users and look for specific user and log the user name and password to redux because there is no backend functionality that looks for and returns a single user
+            if (result.find(user => user.name === this.state.userName && user.password === this.state.password) !== undefined) 
+            {
+              this.props.dispatch({
+              type: "LOGIN",
+              user: {
+                userName: this.state.userName,
+                password: this.state.password,
+              },
+            });
+          } else {
+            this.setState({
+                attemptedLogin: true
+            })
+          }
+          }
+        )
         break;
 
       case "createAccount":
-        this.props.dispatch({
-          type: "CREATE_USER",
-          user: {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            userName: this.state.userName,
-            password: this.state.password,
-          },
-        });
+        // used axios to make post request
+        axios.post("http://localhost:8080/users/add-user", { name: this.state.userName, password: this.state.password}) // API call.
+      .then(
+        (result) => {
+          console.log(result)
+          // had to store the form data in redux because we couldn't get the add-user function on the backend to return the new user 
+          if (result.status === 200) { 
+            this.props.dispatch({
+              type: "LOGIN",
+              user: {
+                userName: this.state.userName,
+                password: this.state.password
+              },
+            });
+          }
+        }
+      );
+        
         break;
       default:
         // If formType doesn't match either of these cases for some reason, then we just log an error to the console
@@ -94,7 +120,7 @@ class AccountScreen extends Component {
                 <button type="submit">Login</button>
               </div>
               {/* if credentials are incorrect, currentUser will be undefined. Display error text if currentUser is undefined */}
-              {this.props.currentUser === undefined && (
+              {this.state.attemptedLogin && (
                 <p
                   style={{
                     fontSize: "14px",
@@ -194,13 +220,8 @@ class AccountScreen extends Component {
           {this.props.authenticated ? (
             <div>
               <p>
-                Currently Logged in as {this.props.currentUser.firstName}{" "}
-                {this.props.currentUser.lastName}
+                Currently Logged in as {this.props.currentUser.userName}
               </p>
-              <p>
-                Quizes Completed: {this.props.currentUser.totalQuizCompleted}
-              </p>
-              <p>Total Points Earned: {this.props.currentUser.totalPoints}</p>
               <button
                 onClick={() => {
                   this.setState({ formType: "login" });
